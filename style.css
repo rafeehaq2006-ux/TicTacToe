@@ -5,7 +5,61 @@ body {
   justify-content: center;
   align-items: center;
   background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-  font-family: Arial, sans-serif;
+  font-family: "Fredoka", Arial, sans-serif;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 24px;
+  background: #ffffff;
+  border: 2px solid #6c63ff;
+  border-radius: 20px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.players {
+  display: flex;
+  gap: 16px;
+}
+
+.player-card {
+  background: #f7f7ff;
+  border: 2px solid #8b8bff;
+  border-radius: 12px;
+  padding: 12px 16px;
+  min-width: 140px;
+  text-align: center;
+}
+
+.player-card h2 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: #4b47b7;
+}
+
+.score {
+  margin: 0 0 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.name-btn,
+.restart-btn {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #6c63ff;
+  color: white;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.name-btn:hover,
+.restart-btn:hover {
+  background: #5448d9;
 }
 
 .grid {
@@ -17,7 +71,6 @@ body {
   background: #ffffff;
   border: 2px solid #6c63ff;
   border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .cell {
