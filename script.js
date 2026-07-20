@@ -5,6 +5,7 @@ const UpdateName2 = document.querySelector('#name-btn2');
 const player1Score = document.querySelector('#ply1_score');
 const player2Score = document.querySelector('#ply2_score');
 const gamecontainer = document.querySelector('.game-container');
+const playerHeadings = document.querySelectorAll('.player-card h2');
 let playerturn = 1;
 let player1win = false;
 let player2win = false;
@@ -33,10 +34,115 @@ function Player(name){
     this.incrementScore = function() {
         this.score++;
     }
+
+    this.updateName = function(newname){
+        this.name = newname;
+    }
 }
 
 let player1 = new Player("Player 1");
 let player2 = new Player("Player 2");
+
+function restartgame(){
+    cells.forEach(cell => {
+        cell.marking = '';
+        cell.element.textContent = '';
+    });
+    player1win=false;
+    player2win=false;
+    for (let i=0;i<3;i++){
+        for (let k=0;k<3;k++){
+            gridarray[i][k]='';
+        }
+    }
+}
+
+restart.addEventListener('click', () => {
+    restartgame();
+})
+
+function closeNameModal() {
+    document.querySelector('.modal-overlay')?.remove();
+}
+
+function openNameModal(player, headingElement) {
+    closeNameModal();
+
+    const overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+
+    const modal = document.createElement('div');
+    modal.className = 'name-modal';
+
+    const closeButton = document.createElement('button');
+    closeButton.className = 'modal-close';
+    closeButton.type = 'button';
+    closeButton.textContent = '✕';
+    closeButton.setAttribute('aria-label', 'Close name form');
+
+    const title = document.createElement('h3');
+    title.textContent = 'Update Name';
+
+    const form = document.createElement('form');
+    form.className = 'name-form';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = `Enter a new name for ${player.getName()}`;
+    input.value = player.getName();
+    input.maxLength = 20;
+    input.required = true;
+
+    const actions = document.createElement('div');
+    actions.className = 'name-form-actions';
+
+    const saveButton = document.createElement('button');
+    saveButton.type = 'submit';
+    saveButton.textContent = 'Save';
+
+    const cancelButton = document.createElement('button');
+    cancelButton.type = 'button';
+    cancelButton.className = 'secondary-btn';
+    cancelButton.textContent = 'Cancel';
+
+    closeButton.addEventListener('click', closeNameModal);
+    cancelButton.addEventListener('click', closeNameModal);
+
+    overlay.addEventListener('click', (event) => {
+        if (event.target === overlay) {
+            closeNameModal();
+        }
+    });
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const newName = input.value.trim();
+
+        if (newName) {
+            player.updateName(newName);
+            headingElement.textContent = newName;
+        }
+
+        closeNameModal();
+    });
+
+    actions.append(saveButton, cancelButton);
+    form.append(input, actions);
+    modal.append(closeButton, title, form);
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    input.focus();
+    input.select();
+}
+
+UpdateName1.addEventListener('click', () => {
+    openNameModal(player1, playerHeadings[0]);
+});
+
+UpdateName2.addEventListener('click', () => {
+    openNameModal(player2, playerHeadings[1]);
+});
 
 cells.forEach(cell => {
     cell.element.addEventListener('click', () => {
@@ -129,7 +235,7 @@ function TestWinner(cell){
         }
         return;
     } else if (gridarray[0][2] === gridarray[1][1] &&
-               gridarray[1][1] === [2][0] && gridarray[0][2] !== ''
+               gridarray[1][1] === gridarray[2][0] && gridarray[0][2] !== ''
     ){
         if (playerturn === 1) {
             player1win = true;

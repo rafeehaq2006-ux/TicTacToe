@@ -86,6 +86,14 @@ body {
   border: 2px solid #8b8bff;
   border-radius: 12px;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.8rem;
+  font-weight: 600;
+  color: #7c80ff;
+  line-height: 1;
+  user-select: none;
 }
 
 .page-header {
@@ -97,4 +105,77 @@ body {
   font-size: 2.2rem;
   color: #4b47b7;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 24, 40, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.name-modal {
+  position: relative;
+  width: min(90vw, 320px);
+  padding: 24px 20px 20px;
+  background: #ffffff;
+  border: 2px solid #6c63ff;
+  border-radius: 16px;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.25);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border: none;
+  background: transparent;
+  color: #4b47b7;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.name-modal h3 {
+  margin: 0 0 12px;
+  color: #4b47b7;
+  text-align: center;
+}
+
+.name-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.name-form input {
+  padding: 10px 12px;
+  border: 1px solid #8b8bff;
+  border-radius: 8px;
+  font-family: "Fredoka", Arial, sans-serif;
+  font-size: 0.95rem;
+}
+
+.name-form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.name-form button {
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  background: #6c63ff;
+  color: white;
+  cursor: pointer;
+  font-family: "Fredoka", Arial, sans-serif;
+}
+
+.name-form .secondary-btn {
+  background: #e9e8ff;
+  color: #4b47b7;
 }
