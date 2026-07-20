@@ -18,11 +18,30 @@ const cells = [...document.querySelectorAll('.cell')].map((cell)=> ({
     element: cell,
 }));
 
+function Player(name){
+    this.name = name;
+    this.score = 0;
+    
+    this.getName = function(){
+        return this.name;
+    }
+
+    this.getScore = function(){
+        return this.score;
+    }
+
+    this.incrementScore = function() {
+        this.score++;
+    }
+}
+
+let player1 = new Player("Player 1");
+let player2 = new Player("Player 2");
 
 cells.forEach(cell => {
     cell.element.addEventListener('click', () => {
-        if (cell.marking === 'X' || cell.marking === 'O'){
-            return;//tests to see if cell already contains marking
+        if ((cell.marking === 'X' || cell.marking === 'O') || player1win || player2win){
+            return;//tests to see if cell already contains marking or a winner has been established in the current round
         }else {
             /*tests which players turn it is and then marks the cell with the 
             appropiate marking*/
@@ -37,9 +56,11 @@ cells.forEach(cell => {
 
             TestWinner(cell.element);
             if (player1win){
-                player1Score.textContent = 2;
+                player1.incrementScore();
+                player1Score.textContent = "Score: "+player1.getScore();
             } else if (player2win){
-                player2Score.textContent = 2;
+                player2.incrementScore();
+                player2Score.textContent = "Score: "+player2.getScore();
             }
             playerturn = playerturn === 1 ? 2 : 1;
         }
