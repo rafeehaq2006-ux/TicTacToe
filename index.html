@@ -14,31 +14,35 @@
     />
   </head>
   <body>
+    <div class="page-header">
+      <h1>Tic Tac Toe</h1>
+    </div>
+
     <div class="game-container">
       <div class="players">
         <div class="player-card">
           <h2>Player 1</h2>
-          <p class="score">Score: 0</p>
-          <button class="name-btn">Update Name</button>
+          <p id="ply1_score">Score: 0</p>
+          <button id="name-btn1">Update Name</button>
         </div>
 
         <div class="player-card">
           <h2>Player 2</h2>
-          <p class="score">Score: 0</p>
-          <button class="name-btn">Update Name</button>
+          <p id="ply2_score">Score: 0</p>
+          <button id="name-btn2">Update Name</button>
         </div>
       </div>
 
       <div class="grid">
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"></div>
+        <div class="cell" id="1"></div>
+        <div class="cell" id="2"></div>
+        <div class="cell" id="3"></div>
+        <div class="cell" id ="4"></div>
+        <div class="cell" id ="5"></div>
+        <div class="cell" id ="6"></div>
+        <div class="cell" id="7"></div>
+        <div class="cell" id= "8"></div>
+        <div class="cell" id ="9"></div>
       </div>
 
       <button class="restart-btn">Restart Game</button>
